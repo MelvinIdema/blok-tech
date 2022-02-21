@@ -1,6 +1,7 @@
 body {
     margin: 0;
-    font-family: "Helvetica Neue", sans-serif;
+    font-family: proxima-soft, "Helvetica Neue", sans-serif;
+    background-color: #F5F5F5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -47,4 +48,40 @@ body {
 
 label {
     font-weight: 600;
+}
+
+fieldset {
+    border: none;
+    padding: 0;
+}
+
+fieldset legend {
+    display: none;
+}
+
+input {
+    padding: 15px 36px 16px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+}
+
+::placeholder {
+    color: #AAAFAF;
+}
+
+button {
+    padding: 14px 21px 13px 21px;
+    font-weight: 600;
+    background-color: #0143F9;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 3px 3px 6px rgba(0, 0, 0, .16);
+    cursor: pointer;
+}
+
+a {
+    color: black;
 }
