@@ -35,6 +35,14 @@ app.get('/register', (req, res) => {
     res.render('register');
 })
 
+app.get('/account', (req, res) => {
+    res.render('account', {
+        username: "MelvinIdema",
+        birthday: "",
+        interests: ["hiking", "running"]
+    });
+})
+
 app.get('/password-forget', (req, res) => {
     res.send('NOT IMPLEMENTED: Password Forget');
 })

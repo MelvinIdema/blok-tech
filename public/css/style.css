@@ -32,3 +32,19 @@ body {
 .alert p {
     margin: 6px 0 0 0;
 }
+
+#interests {
+    display: flex;
+}
+
+.interest {
+    padding: 6px 16px;
+    margin-right: 8px;
+    background: #85cac8;
+    border-radius: 15px;
+    font-size: 12px;
+}
+
+label {
+    font-weight: 600;
+}
