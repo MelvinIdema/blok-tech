@@ -32,7 +32,7 @@ app.get('/login', (req, res) => {
 })
 
 app.get('/register', (req, res) => {
-    res.send('NOT IMPLEMENTED: Register');
+    res.render('register');
 })
 
 app.get('/password-forget', (req, res) => {
