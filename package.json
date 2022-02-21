@@ -1,13 +1,13 @@
 {
-  "name": "be-course",
+  "name": "blok-tech",
   "version": "1.1.0",
-  "description": "NPM Project for Backend Development",
+  "description": "Personal Repository for the AUAS Technical Course",
   "main": "serve.js",
   "scripts": {
     "serve": "nodemon serve.js",
     "start": "nodemon package.js"
   },
-  "keywords": [],
+  "keywords": ["javascript", "css", "html", "front-end", "express", "node", "es6", "back-end", "project", "cmd", "hva"],
   "author": {
     "name": "Melvin Idema",
     "email": "",
