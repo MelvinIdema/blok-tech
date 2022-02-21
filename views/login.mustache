@@ -1,0 +1,25 @@
+{{> layout/head }}
+
+{{#alert}}
+    {{> alert }}
+{{/alert}}
+
+<section>
+    <h1>Login</h1>
+    <form action="/login" method="post">
+        <fieldset>
+            <legend>Account Information</legend>
+            <p>
+                <input type="text" name="username" id="username" required>
+                <label for="username">Username</label>
+            </p>
+            <p>
+                <input type="password" name="password" id="password" required>
+                <label for="password">Password</label>
+            </p>
+            <button type="submit">Log In</button>
+        </fieldset>
+    </form>
+</section>
+
+{{> layout/footer }}

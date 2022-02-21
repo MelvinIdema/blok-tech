@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    res.send('NOT IMPLEMENTED: Login');
+    res.render('login');
 })
 
 app.get('/register', (req, res) => {
