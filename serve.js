@@ -28,12 +28,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/login', (req, res) => {
-    res.render('login', {
-        alert: {
-            title: "Foutje",
-            body: "Het lijkt erop alsof je gegevens niet overeen komen."
-        }
-    });
+    res.render('login', {});
 })
 
 app.get('/register', (req, res) => {

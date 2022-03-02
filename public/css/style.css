@@ -87,6 +87,11 @@ button {
     border-radius: 4px;
     box-shadow: 3px 3px 6px rgba(0, 0, 0, .16);
     cursor: pointer;
+    transition: box-shadow 300ms ease-in-out;
+}
+
+button:hover {
+    box-shadow: none;
 }
 
 a {

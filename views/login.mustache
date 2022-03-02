@@ -10,17 +10,17 @@
     <form action="/login" method="post">
         <fieldset>
             <legend>Account Information</legend>
-            <p>
+            <p id="emailSection">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="error" required>
-                <p class="error show">Geef je e-mailadres op</p>
+                <input type="email" name="email" id="email" required>
+                <p class="error"></p>
             </p>
-            <p>
+            <p id="passwordSection">
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password" required>
             </p>
             <p class="controls">
-                <button type="submit">Log In</button>
+                <button type="submit" id="loginBtn">Log In</button>
             </p>
         </fieldset>
     </form>
@@ -29,4 +29,5 @@
     </footer>
 </section>
 
+<script src="js/login.js" defer></script>
 {{> layout/footer }}
