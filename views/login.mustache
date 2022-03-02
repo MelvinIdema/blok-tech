@@ -1,26 +1,32 @@
 {{> layout/head }}
 
-{{#alert}}
-    {{> alert }}
-{{/alert}}
-
-<section>
-    <h1>Login</h1>
+<section class="login-container">
+    <header>
+        <h1>Inloggen</h1>
+    </header>
+    {{#alert}}
+        {{> alert }}
+    {{/alert}}
     <form action="/login" method="post">
         <fieldset>
             <legend>Account Information</legend>
             <p>
-                <label for="username">Username</label> <br>
-                <input type="text" name="username" id="username" required>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" class="error" required>
+                <p class="error show">Geef je e-mailadres op</p>
             </p>
             <p>
-                <label for="password">Password</label> <br>
+                <label for="password">Password</label>
                 <input type="password" name="password" id="password" required>
             </p>
-            <button type="submit">Log In</button>
+            <p class="controls">
+                <button type="submit">Log In</button>
+            </p>
         </fieldset>
     </form>
-    <a href="/register">Not yet an account?</a>
+    <footer>
+        <a href="/register">Nog geen account?</a>
+    </footer>
 </section>
 
 {{> layout/footer }}

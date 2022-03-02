@@ -6,6 +6,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+    margin: 0;
+}
+
 .container {
     max-width: 1200px;
     margin: 36px auto;
@@ -47,7 +51,9 @@ body {
 }
 
 label {
+    display: block;
     font-weight: 600;
+    margin-bottom: 8px;
 }
 
 fieldset {
@@ -65,6 +71,7 @@ input {
     border: none;
     border-radius: 10px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
+    width: 100%;
 }
 
 ::placeholder {
@@ -72,7 +79,7 @@ input {
 }
 
 button {
-    padding: 14px 21px 13px 21px;
+    padding: 14px 36px 13px 36px;
     font-weight: 600;
     background-color: #0143F9;
     color: white;
@@ -85,3 +92,61 @@ button {
 a {
     color: black;
 }
+
+.login-container .alert {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.login-container {
+    padding: 36px;
+}
+
+.login-container header {
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.login-container footer {
+    margin-top: 12px;
+    text-align: center;
+}
+
+.login-container form p {
+    margin-top: 36px;
+}
+
+.login-container form .controls {
+    text-align: right;
+}
+
+.login-container form p.error {
+    display: none;
+    color: red;
+}
+
+.login-container form p.error {
+    display: block;
+    margin: 0;
+}
+
+input.error {
+    border: 1px solid rgba(255, 0, 0, 0.5);
+    box-shadow: 0 3px 6px rgba(255, 0, 0, 0.16);
+}
+
+
+
+@media screen and (min-width: 768px) {
+
+    .login-container {
+        border: 1px solid #e3e3e3;
+        border-radius: 6px;
+        background: white;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+}
+
+
