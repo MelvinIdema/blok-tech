@@ -1,26 +1,39 @@
 {{> layout/head }}
 
-{{#alert}}
-    {{> alert }}
-{{/alert}}
-
-<section>
-    <h1>Register</h1>
+<section class="login-container">
+    <header>
+        <h1>Registreren</h1>
+    </header>
+    {{#alert}}
+        {{> alert }}
+    {{/alert}}
     <form action="/register" method="post">
         <fieldset>
             <legend>Account Information</legend>
             <p>
-                <label for="username">Username</label> <br>
-                <input type="text" name="username" id="username" required>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" required>
             </p>
             <p>
-                <label for="password">Password</label> <br>
+                <label for="password">Password</label>
                 <input type="password" name="password" id="password" required>
             </p>
-            <button type="submit">Sign Up</button>
+            <p>
+                <label for="rpassword">Password</label>
+                <input type="password" name="rpassword" id="rpassword" required>
+            </p>
+            <p>
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" required>
+            </p>
+            <p class="controls">
+                <button type="submit">Sign Up</button>
+            </p>
         </fieldset>
     </form>
-    <a href="/login">Already own an account?</a>
+    <footer>
+        <a href="/login">Heb je al een account?</a>
+    </footer>
 </section>
 
 {{> layout/footer }}
