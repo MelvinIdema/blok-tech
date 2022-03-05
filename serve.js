@@ -19,12 +19,12 @@ app.get('/', (req, res) => {
       { name: 'jamie' },
       { name: 'johan' },
       { name: 'kieran' },
-      { name: 'richard' }
+      { name: 'richard' },
     ],
     alert: {
       title: 'Under Construction',
-      body: 'This site is under construction and might now work properly.'
-    }
+      body: 'This site is under construction and might now work properly.',
+    },
   });
 });
 
@@ -40,7 +40,7 @@ app.get('/account', (req, res) => {
   res.render('account', {
     username: 'MelvinIdema',
     birthday: '',
-    interests: ['hiking', 'running']
+    interests: ['hiking', 'running'],
   });
 });
 
@@ -61,8 +61,8 @@ app.get('*', (req, res) => {
   res.render('404', {
     alert: {
       title: '404 not found',
-      body: 'This page has not been found. Sorry!'
-    }
+      body: 'This page has not been found. Sorry!',
+    },
   });
 });
 

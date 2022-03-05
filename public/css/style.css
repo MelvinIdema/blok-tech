@@ -1,157 +1,151 @@
 body {
-    margin: 0;
-    font-family: proxima-soft, "Helvetica Neue", sans-serif;
-    background-color: #F5F5F5;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  font-family: proxima-soft, 'Helvetica Neue', sans-serif;
+  background-color: #f5f5f5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1 {
-    margin: 0;
+  margin: 0;
 }
 
 .container {
-    max-width: 1200px;
-    margin: 36px auto;
+  max-width: 1200px;
+  margin: 36px auto;
 }
 
 .dogs {
-    display: flex;
+  display: flex;
 }
 
 .dogs h2 {
-    padding: 12px;
-    margin: 0;
-    text-transform: capitalize;
+  padding: 12px;
+  margin: 0;
+  text-transform: capitalize;
 }
 
 .alert {
-    background-color: #FFF7C7;
-    color: #927000;
-    padding: 12px 48px 16px 20px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    border-radius: 3px;
-    width: fit-content;
+  background-color: #fff7c7;
+  color: #927000;
+  padding: 12px 48px 16px 20px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border-radius: 3px;
+  width: fit-content;
 }
 
 .alert p {
-    margin: 6px 0 0 0;
+  margin: 6px 0 0 0;
 }
 
 #interests {
-    display: flex;
+  display: flex;
 }
 
 .interest {
-    padding: 6px 16px;
-    margin-right: 8px;
-    background: #85cac8;
-    border-radius: 15px;
-    font-size: 12px;
+  padding: 6px 16px;
+  margin-right: 8px;
+  background: #85cac8;
+  border-radius: 15px;
+  font-size: 12px;
 }
 
 label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
 }
 
 fieldset {
-    border: none;
-    padding: 0;
+  border: none;
+  padding: 0;
 }
 
 fieldset legend {
-    display: none;
+  display: none;
 }
 
 input {
-    padding: 15px 36px 16px 16px;
-    font-size: 16px;
-    border: none;
-    border-radius: 10px;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, .16);
-    width: 100%;
+  padding: 15px 36px 16px 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  width: 100%;
 }
 
 ::placeholder {
-    color: #AAAFAF;
+  color: #aaafaf;
 }
 
 button {
-    padding: 14px 36px 13px 36px;
-    font-weight: 600;
-    background-color: #0143F9;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    box-shadow: 3px 3px 6px rgba(0, 0, 0, .16);
-    cursor: pointer;
-    transition: box-shadow 300ms ease-in-out;
+  padding: 14px 36px 13px 36px;
+  font-weight: 600;
+  background-color: #0143f9;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.16);
+  cursor: pointer;
+  transition: box-shadow 300ms ease-in-out;
 }
 
 button:hover {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 a {
-    color: black;
+  color: black;
 }
 
 .login-container .alert {
-    box-sizing: border-box;
-    width: 100%;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .login-container {
-    padding: 36px;
+  padding: 36px;
 }
 
 .login-container header {
-    margin-bottom: 24px;
-    text-align: center;
+  margin-bottom: 24px;
+  text-align: center;
 }
 
 .login-container footer {
-    margin-top: 12px;
-    text-align: center;
+  margin-top: 12px;
+  text-align: center;
 }
 
 .login-container form p {
-    margin-top: 36px;
+  margin-top: 36px;
 }
 
 .login-container form .controls {
-    text-align: right;
+  text-align: right;
 }
 
 .login-container form p.error {
-    display: none;
-    color: red;
+  display: none;
+  color: red;
 }
 
 .login-container form p.error {
-    display: block;
-    margin: 0;
+  display: block;
+  margin: 0;
 }
 
 input.error {
-    border: 1px solid rgba(255, 0, 0, 0.5);
-    box-shadow: 0 3px 6px rgba(255, 0, 0, 0.16);
+  border: 1px solid rgba(255, 0, 0, 0.5);
+  box-shadow: 0 3px 6px rgba(255, 0, 0, 0.16);
 }
-
-
 
 @media screen and (min-width: 768px) {
-
-    .login-container {
-        border: 1px solid #e3e3e3;
-        border-radius: 6px;
-        background: white;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-
+  .login-container {
+    border: 1px solid #e3e3e3;
+    border-radius: 6px;
+    background: white;
+    max-width: 500px;
+    margin: 0 auto;
+  }
 }
-
-

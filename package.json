@@ -5,7 +5,8 @@
   "main": "serve.js",
   "scripts": {
     "serve": "nodemon serve.js",
-    "start": "nodemon package.js"
+    "start": "nodemon package.js",
+    "prepare": "husky install"
   },
   "keywords": [
     "javascript",
@@ -33,10 +34,18 @@
   },
   "devDependencies": {
     "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.2.0",
-    "nodemon": "^2.0.15"
+    "husky": "^7.0.4",
+    "lint-staged": "^12.3.5",
+    "nodemon": "^2.0.15",
+    "prettier": "2.5.1"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md}": "prettier --write"
   }
 }
