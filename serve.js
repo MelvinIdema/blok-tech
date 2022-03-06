@@ -1,4 +1,6 @@
+const db = require('./db/index.js');
 const path = require('path');
+const bcrypt = require('bcrypt');
 const express = require('express');
 const mustacheExpress = require('mustache-express');
 const app = express();
@@ -9,8 +11,12 @@ app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'mustache');
 
 app.use(express.static('public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+  const users = await db.listUsers();
+
   res.render('index', {
     page: 'Home',
     name: 'Melvin',
@@ -21,6 +27,7 @@ app.get('/', (req, res) => {
       { name: 'kieran' },
       { name: 'richard' },
     ],
+    users: users,
     alert: {
       title: 'Under Construction',
       body: 'This site is under construction and might now work properly.',
@@ -34,6 +41,17 @@ app.get('/login', (req, res) => {
 
 app.get('/register', (req, res) => {
   res.render('register');
+});
+
+app.post('/register', async (req, res) => {
+  console.log(req.body);
+  const user = { email: req.body.email };
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(req.body.password, salt);
+  await db.addUser(user);
+  res.send({
+    succes: user.email,
+  });
 });
 
 app.get('/account', (req, res) => {

@@ -10,6 +10,15 @@
             {{/alert}}
 
             <section>
+              <h1>Users:</h1>
+              <div class='dogs'>
+                {{#users}}
+                  <h2>{{email}}</h2>
+                {{/users}}
+              </div>
+            </section>
+
+            <section>
                 <h1>Dogs:</h1>
                 <div class="dogs">
                     {{#dogs}}

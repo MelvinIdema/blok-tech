@@ -1,4 +1,4 @@
 {
-  "watch": ["serve.js", "public/", "views/"],
+  "watch": ["serve.js", "public/", "views/", "db/"],
   "ext": "js, css, mustache"
 }
