@@ -44,7 +44,6 @@ app.get('/register', (req, res) => {
 });
 
 app.post('/register', async (req, res) => {
-  console.log(req.body);
   const user = { email: req.body.email };
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(req.body.password, salt);
