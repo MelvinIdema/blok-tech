@@ -1,8 +1,13 @@
-const db = require('./db/index.js');
 const path = require('path');
-const bcrypt = require('bcrypt');
+require('dotenv').config({ path: path.join(__dirname, '/.env') });
 const express = require('express');
+const bcrypt = require('bcrypt');
 const mustacheExpress = require('mustache-express');
+const cookieParser = require('cookie-parser');
+const db = require('./db/index.js');
+const auth = require('./lib/auth.js');
+const { authenticateToken } = require('./middleware/authenticateToken.js');
+
 const app = express();
 
 app.engine('mustache', mustacheExpress('views/partials/', '.mustache'));
@@ -13,8 +18,9 @@ app.set('view engine', 'mustache');
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(cookieParser());
 
-app.get('/', async (req, res) => {
+app.get('/', authenticateToken, async (req, res) => {
   const users = await db.listUsers();
 
   res.render('index', {
@@ -47,8 +53,15 @@ app.post('/login', async (req, res) => {
       error: 'Account not found or password incorrect',
     });
   } else {
+    const [token, refreshToken] = auth.generateToken(user.email);
+    res.cookie('token', token, { maxAge: 900000, httpOnly: true });
+    res.cookie('refreshToken', refreshToken, {
+      maxAge: 900000,
+      httpOnly: true,
+    });
     res.send({
-      succes: 'Authentication successful :D',
+      token,
+      refreshToken,
     });
   }
 });
@@ -64,6 +77,21 @@ app.post('/register', async (req, res) => {
   await db.addUser(user);
   res.send({
     succes: user.email,
+  });
+});
+
+app.get('/logout', (req, res) => {
+  res.clearCookie('token');
+  res.clearCookie('refreshToken');
+  res.send({
+    succes: 'Logged Out',
+  });
+});
+
+app.get('/revoke', (req, res) => {
+  auth.refreshTokens.length = 0;
+  res.send({
+    msg: 'Revoked all refresh tokens',
   });
 });
 
