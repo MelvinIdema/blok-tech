@@ -39,6 +39,20 @@ app.get('/login', (req, res) => {
   res.render('login', {});
 });
 
+app.post('/login', async (req, res) => {
+  const user = { email: req.body.email, password: req.body.password };
+  const dbUser = await db.findUser(user.email);
+  if (!dbUser || !bcrypt.compareSync(user.password, dbUser.password)) {
+    res.send({
+      error: 'Account not found or password incorrect',
+    });
+  } else {
+    res.send({
+      succes: 'Authentication successful :D',
+    });
+  }
+});
+
 app.get('/register', (req, res) => {
   res.render('register');
 });

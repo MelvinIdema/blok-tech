@@ -19,3 +19,18 @@ module.exports.listUsers = async function () {
     console.error(err);
   }
 };
+
+module.exports.findUser = async function (email) {
+  try {
+    const users = await fs.readFileSync('db/db.json');
+    const parsed = JSON.parse(users.toString());
+    const user = parsed.find((user) => user.email === email);
+    if (!user) return false;
+    return {
+      email: user.email,
+      password: user.password,
+    };
+  } catch (err) {
+    console.error(err);
+  }
+};
