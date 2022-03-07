@@ -1,36 +1,64 @@
-const fs = require('fs');
+const { MongoClient } = require('mongodb');
 
-module.exports.addUser = function (user) {
-  fs.readFile('db/db.json', (err, data) => {
-    if (err) throw err;
-    const parsed = JSON.parse(data.toString());
-    parsed.push(user);
-    return fs.writeFile('db/db.json', JSON.stringify(parsed), {}, (err) => {
-      if (err) throw err;
-    });
-  });
+const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.vpj2j.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+const client = new MongoClient(uri);
+
+module.exports.addUser = async function (user) {
+  const userObject = {
+    email: user.email,
+    password: user.password,
+  };
+  try {
+    await client.connect();
+    const result = await createUser(client, userObject);
+    console.log('User created with ID: ', result.insertedId);
+  } catch (err) {
+    console.error(err);
+  } finally {
+    await client.close();
+  }
 };
 
 module.exports.listUsers = async function () {
   try {
-    const users = await fs.readFileSync('db/db.json');
-    return JSON.parse(users.toString()).map((user) => ({ email: user.email }));
+    await client.connect();
+    const result = await listUsers(client);
+    const array = await result.toArray();
+    return array.map((user) => ({ email: user.email }));
   } catch (err) {
     console.error(err);
+  } finally {
+    await client.close();
   }
 };
 
 module.exports.findUser = async function (email) {
   try {
-    const users = await fs.readFileSync('db/db.json');
-    const parsed = JSON.parse(users.toString());
-    const user = parsed.find((user) => user.email === email);
-    if (!user) return false;
+    await client.connect();
+    const result = await findUser(client, email);
+    if (!result) return false;
     return {
-      email: user.email,
-      password: user.password,
+      email: result.email,
+      password: result.password,
     };
   } catch (err) {
     console.error(err);
+  } finally {
+    await client.close();
   }
 };
+
+async function createUser(client, user) {
+  return await client.db('matching-app').collection('users').insertOne(user);
+}
+
+async function findUser(client, email) {
+  return await client
+    .db('matching-app')
+    .collection('users')
+    .findOne({ email: email });
+}
+
+async function listUsers(client) {
+  return await client.db('matching-app').collection('users').find({});
+}

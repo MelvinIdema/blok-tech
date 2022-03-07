@@ -1,13 +1,16 @@
 const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '/.env') });
+
 const express = require('express');
-const bcrypt = require('bcrypt');
 const mustacheExpress = require('mustache-express');
 const cookieParser = require('cookie-parser');
+
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 const db = require('./db/index.js');
 const auth = require('./lib/auth.js');
 const { authenticateToken } = require('./middleware/authenticateToken.js');
-const jwt = require('jsonwebtoken');
 
 const app = express();
 
