@@ -12,7 +12,7 @@
             <legend>Account Information</legend>
             <p id="emailSection">
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" required>
+                <input type="email" name="email" id="email" value="{{email}}" required>
                 <p class="error"></p>
             </p>
             <p id="passwordSection">
@@ -29,5 +29,10 @@
     </footer>
 </section>
 
+{{#alert}}
+{{/alert}}
+{{^alert}}
 <script src="js/login.js" defer></script>
+{{/alert}}
+
 {{> layout/footer }}
