@@ -1,11 +1,14 @@
 {
   "name": "blok-tech",
   "version": "1.1.0",
+  "engines": {
+    "node": "16.x"
+  },
   "description": "Personal Repository for the AUAS Technical Course",
   "main": "serve.js",
   "scripts": {
     "serve": "nodemon serve.js",
-    "start": "nodemon package.js",
+    "start": "node serve.js",
     "prepare": "husky install"
   },
   "keywords": [

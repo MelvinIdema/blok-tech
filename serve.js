@@ -4,6 +4,7 @@ require('dotenv').config({ path: path.join(__dirname, '/.env') });
 const express = require('express');
 const mustacheExpress = require('mustache-express');
 const cookieParser = require('cookie-parser');
+const PORT = process.env.PORT || 3000;
 
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -139,4 +140,4 @@ app.get('*', (req, res) => {
   });
 });
 
-app.listen(3000, () => console.log('Server started on port: 3000'));
+app.listen(PORT, () => console.log(`Server started on port: ${PORT}`));
