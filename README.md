@@ -34,6 +34,24 @@ In the first 5 weeks of the Technical Course we focus on 1 feature of a _Matchin
 
 This feature is slowly being developed based on the lessons. You can read more about my feature on [📱 Het Concept](https://github.com/MelvinIdema/blok-tech/wiki/%F0%9F%93%B1--Het-Concept). This repository will therefore be in constant motion during the course.
 
+## 𝌭 Database Structure
+
+This project uses [MongoDB](https://www.mongodb.com/) as application data platform to store users. With the following data model:
+
+```
+{
+  _id: ObjectId,
+  created_at: Integer
+  email: String,
+  password: BCrypt Hash as String,
+  name: String,
+}
+```
+
+### The structure looks as follows:
+
+<img src="https://i.imgur.com/KW1UODn.png" />
+
 ## 🛠 Installation
 
 This project is build with **NPM** `6.14.10` and **Node** `v14.15.4`.
