@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get('/', authenticateToken, async (req, res) => {
-  const users = await db.listUsers();
+  const users = await db.findAllUsers();
 
   res.render('index', {
     page: 'Home',
@@ -58,7 +58,7 @@ app.get('/login', (req, res) => {
 
 app.post('/login', async (req, res) => {
   const user = { email: req.body.email, password: req.body.password };
-  const dbUser = await db.findUser(user.email);
+  const dbUser = await db.findUserByEmail(user.email);
   if (!dbUser || !bcrypt.compareSync(user.password, dbUser.password)) {
     res.render('login', {
       email: user.email,
@@ -74,10 +74,7 @@ app.post('/login', async (req, res) => {
       maxAge: 900000,
       httpOnly: true,
     });
-    res.send({
-      token,
-      refreshToken,
-    });
+    res.redirect('/');
   }
 });
 
@@ -89,7 +86,7 @@ app.post('/register', async (req, res) => {
   const user = { email: req.body.email };
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(req.body.password, salt);
-  await db.addUser(user);
+  await db.createUser(user);
   res.send({
     succes: user.email,
   });
@@ -98,8 +95,11 @@ app.post('/register', async (req, res) => {
 app.get('/logout', (req, res) => {
   res.clearCookie('token');
   res.clearCookie('refreshToken');
-  res.send({
-    succes: 'Logged Out',
+  res.render('login', {
+    alert: {
+      title: 'Logged out',
+      body: 'Logged out successfully.',
+    },
   });
 });
 
