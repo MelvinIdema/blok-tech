@@ -8,23 +8,23 @@ async function login(req, res) {
   const user = { email: req.body.email, password: req.body.password };
   const dbUser = await User.getByEmail(user.email);
 
-  if (!dbUser || !bcrypt.compareSync(user.password, dbUser.password)) {
-    return res.render('login', {
-      email: user.email,
-      alert: {
-        title: 'Whoops!',
-        body: 'There seems to be something wrong with your account details.',
-      },
+  if (dbUser && bcrypt.compareSync(user.password, dbUser.password)) {
+    const [token, refreshToken] = Auth.generateToken(user.email);
+    res.cookie('token', token, { maxAge: 900000, httpOnly: true });
+    res.cookie('refreshToken', refreshToken, {
+      maxAge: 900000,
+      httpOnly: true,
     });
+    return res.redirect('/');
   }
 
-  const [token, refreshToken] = Auth.generateToken(user.email);
-  res.cookie('token', token, { maxAge: 900000, httpOnly: true });
-  res.cookie('refreshToken', refreshToken, {
-    maxAge: 900000,
-    httpOnly: true,
+  return res.render('login', {
+    email: user.email,
+    alert: {
+      title: 'Whoops!',
+      body: 'There seems to be something wrong with your account details.',
+    },
   });
-  return res.redirect('/');
 }
 
 async function logout(req, res) {
@@ -41,11 +41,11 @@ async function logout(req, res) {
 async function register(req, res) {
   if (req.method === 'GET') return res.render('register');
 
-  const user = {
+  const user = User.assign({
     created_at: Date.now(),
     email: req.body.email,
     name: req.body.name,
-  };
+  });
 
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(req.body.password, salt);

@@ -1,3 +1,4 @@
+import Log from '../services/Log.js';
 import jwt from 'jsonwebtoken';
 import Auth from '../services/Auth.js';
 
@@ -29,6 +30,7 @@ function authenticateToken(req, res, next) {
       res.cookie('token', newToken, { maxAge: 900000, httpOnly: true });
       return next();
     } catch (err) {
+      Log(err);
       return res.redirect('/user/login');
     }
   }
