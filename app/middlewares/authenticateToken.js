@@ -1,7 +1,7 @@
-const jwt = require('jsonwebtoken');
-const { refreshTokens } = require('../lib/auth.js');
+import jwt from 'jsonwebtoken';
+import Auth from '../services/Auth.js';
 
-module.exports.authenticateToken = function (req, res, next) {
+function authenticateToken(req, res, next) {
   const token = req.cookies.token;
   const refreshToken = req.cookies.refreshToken;
 
@@ -9,10 +9,15 @@ module.exports.authenticateToken = function (req, res, next) {
 
   try {
     const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-    if (verified) return next();
+    if (verified) {
+      req.token = verified;
+      return next();
+    }
   } catch (err) {
     try {
-      const refreshInDb = refreshTokens.find((token) => token === refreshToken);
+      const refreshInDb = Auth.refreshTokens.find(
+        (token) => token === refreshToken
+      );
       const refreshVerified =
         refreshInDb &&
         jwt.verify(refreshToken, process.env.REFRESHTOKEN_SECRET);
@@ -24,7 +29,9 @@ module.exports.authenticateToken = function (req, res, next) {
       res.cookie('token', newToken, { maxAge: 900000, httpOnly: true });
       return next();
     } catch (err) {
-      return res.redirect('/login');
+      return res.redirect('/user/login');
     }
   }
-};
+}
+
+export default authenticateToken;

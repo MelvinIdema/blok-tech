@@ -7,7 +7,7 @@
     {{#alert}}
         {{> alert }}
     {{/alert}}
-    <form action="/login" method="post">
+    <form action="login" method="post">
         <fieldset>
             <legend>Account Information</legend>
             <p id="emailSection">
@@ -25,14 +25,14 @@
         </fieldset>
     </form>
     <footer>
-        <a href="/register">Nog geen account?</a>
+        <a href="register">Nog geen account?</a>
     </footer>
 </section>
 
 {{#alert}}
 {{/alert}}
 {{^alert}}
-<script src="js/login.js" defer></script>
+<script src="/js/login.js" defer></script>
 {{/alert}}
 
 {{> layout/footer }}
