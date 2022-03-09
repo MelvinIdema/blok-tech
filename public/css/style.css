@@ -10,6 +10,46 @@ h1 {
   margin: 0;
 }
 
+.navbar {
+  box-sizing: border-box;
+  height: 60px;
+  background: #3f3f3f;
+  color: white;
+  overflow: hidden;
+  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
+}
+
+.navbar .container {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav-menu {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu__item {
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.nav-menu__item:hover {
+  background: #494949;
+}
+
 .container {
   max-width: 1200px;
   margin: 36px auto;
@@ -66,6 +106,7 @@ fieldset legend {
 }
 
 input {
+  box-sizing: border-box;
   padding: 15px 36px 16px 16px;
   font-size: 16px;
   border: none;

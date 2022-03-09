@@ -5,6 +5,7 @@ async function show(req, res) {
   const allUsers = await User.getAll();
 
   res.render('index', {
+    isLoggedIn: true,
     name: user.name,
     users: allUsers,
     dogs: [
