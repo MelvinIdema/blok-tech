@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: proxima-soft, 'Helvetica Neue', sans-serif;
-  background-color: #f5f5f5;
+  background-color: #fff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -13,10 +13,10 @@ h1 {
 .navbar {
   box-sizing: border-box;
   height: 60px;
-  background: #3f3f3f;
-  color: white;
+  background: #fff;
+  color: #000;
   overflow: hidden;
-  box-shadow: 0 2px 8px 0 rgba(99, 99, 99, 0.2);
+  border-bottom: 1px solid #e3e3e3;
 }
 
 .navbar .container {
@@ -47,12 +47,14 @@ h1 {
 }
 
 .nav-menu__item:hover {
-  background: #494949;
+  background: #fafafa;
 }
 
 .container {
+  box-sizing: border-box;
   max-width: 1200px;
   margin: 36px auto;
+  padding: 0 36px;
 }
 
 .dogs {
@@ -146,6 +148,11 @@ a {
 
 .login-container {
   padding: 36px;
+  border: 1px solid #e3e3e3;
+  border-radius: 6px;
+  background: white;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .login-container header {
@@ -179,14 +186,4 @@ a {
 input.error {
   border: 1px solid rgba(255, 0, 0, 0.5);
   box-shadow: 0 3px 6px rgba(255, 0, 0, 0.16);
-}
-
-@media screen and (min-width: 768px) {
-  .login-container {
-    border: 1px solid #e3e3e3;
-    border-radius: 6px;
-    background: white;
-    max-width: 500px;
-    margin: 0 auto;
-  }
 }
