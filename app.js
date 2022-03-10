@@ -3,10 +3,12 @@ import 'dotenv/config';
 import express from 'express';
 import mustacheExpress from 'mustache-express';
 import session from 'express-session';
+import MongoStore from 'connect-mongo';
 import cookieParser from 'cookie-parser';
 
 import AppRouter from './routes/App.js';
 import UserRouter from './routes/User.js';
+import injectUser from './app/middlewares/injectUser.js';
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -23,11 +25,15 @@ const oneDay = 1000 * 60 * 60 * 24;
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
+    store: MongoStore.create({
+      mongoUrl: `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.vpj2j.mongodb.net/matching-app?retryWrites=true&w=majority`,
+    }),
     saveUninitialized: true,
     cookie: { maxAge: oneDay },
     resave: false,
   })
 );
+app.use(injectUser);
 
 app.use('/', AppRouter);
 app.use('/user', UserRouter);

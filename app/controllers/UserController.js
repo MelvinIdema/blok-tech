@@ -9,7 +9,6 @@ async function login(req, res) {
 
   if (dbUser && bcrypt.compareSync(user.password, dbUser.password)) {
     req.session.email = user.email;
-    console.log('logging in...', req.session.email);
     return res.redirect('/');
   }
 
@@ -24,6 +23,7 @@ async function login(req, res) {
 
 async function logout(req, res) {
   req.session.destroy();
+  res.locals.isLoggedIn = false;
   res.render('login', {
     alert: {
       title: 'Logged out',
@@ -39,14 +39,16 @@ async function register(req, res) {
     created_at: Date.now(),
     email: req.body.email,
     name: req.body.name,
+    avatar: `${req.files[0].filename}`,
   });
 
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(req.body.password, salt);
 
-  const result = await User.create(user);
+  await User.create(user);
 
-  res.send({ 'User successfully created': result });
+  req.session.email = user.email;
+  res.redirect('/');
 }
 
 async function update(req, res) {
