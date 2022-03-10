@@ -2,6 +2,7 @@ import 'dotenv/config';
 
 import express from 'express';
 import mustacheExpress from 'mustache-express';
+import session from 'express-session';
 import cookieParser from 'cookie-parser';
 
 import AppRouter from './routes/App.js';
@@ -18,6 +19,15 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    saveUninitialized: true,
+    cookie: { maxAge: oneDay },
+    resave: false,
+  })
+);
 
 app.use('/', AppRouter);
 app.use('/user', UserRouter);

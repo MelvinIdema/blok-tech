@@ -1,7 +1,7 @@
 import User from '../models/User.js';
 
 async function show(req, res) {
-  const user = await User.getByEmail(req.token.email);
+  const user = await User.getByEmail(req.session.email);
   const allUsers = await User.getAll();
 
   res.render('index', {

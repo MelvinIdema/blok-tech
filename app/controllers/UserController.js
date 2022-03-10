@@ -1,6 +1,5 @@
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
-import Auth from '../services/Auth.js';
 
 async function login(req, res) {
   if (req.method === 'GET') return res.render('login');
@@ -9,12 +8,8 @@ async function login(req, res) {
   const dbUser = await User.getByEmail(user.email);
 
   if (dbUser && bcrypt.compareSync(user.password, dbUser.password)) {
-    const [token, refreshToken] = Auth.generateToken(user.email);
-    res.cookie('token', token, { maxAge: 900000, httpOnly: true });
-    res.cookie('refreshToken', refreshToken, {
-      maxAge: 900000,
-      httpOnly: true,
-    });
+    req.session.email = user.email;
+    console.log('logging in...', req.session.email);
     return res.redirect('/');
   }
 
@@ -28,8 +23,7 @@ async function login(req, res) {
 }
 
 async function logout(req, res) {
-  res.clearCookie('token');
-  res.clearCookie('refreshToken');
+  req.session.destroy();
   res.render('login', {
     alert: {
       title: 'Logged out',
