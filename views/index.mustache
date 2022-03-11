@@ -1,33 +1,37 @@
 {{> layout/head }}
+<div class="layout-container">
+  <main>
+    {{#name}}
+      <h1>Hello, {{name}}</h1>
+      <a href="/ddd">To the 404 page</a>
+    {{/name}}
 
-        {{#name}}
-            <h1>Hello, {{name}}</h1>
-            <a href="/ddd">To the 404 page</a>
-        {{/name}}
+    {{#alert}}
+      {{> alert }}
+    {{/alert}}
 
-            {{#alert}}
-                {{> alert }}
-            {{/alert}}
+    <section>
+      <h1>Users:</h1>
+      <div class='dogs'>
+        {{#users}}
+          <h2>{{email}}</h2>
+        {{/users}}
+      </div>
+    </section>
 
-            <section>
-              <h1>Users:</h1>
-              <div class='dogs'>
-                {{#users}}
-                  <h2>{{email}}</h2>
-                {{/users}}
-              </div>
-            </section>
-
-            <section>
-                <h1>Dogs:</h1>
-                <div class="dogs">
-                    {{#dogs}}
-                        <h2>{{name}}</h2>
-                    {{/dogs}}
-                    {{^dogs}}
-                        <h2>No dogs found :(</h2>
-                    {{/dogs}}
-                </div>
-            </section>
+    <section>
+      <h1>Dogs:</h1>
+      <div class="dogs">
+        {{#dogs}}
+          <h2>{{name}}</h2>
+        {{/dogs}}
+        {{^dogs}}
+          <h2>No dogs found :(</h2>
+        {{/dogs}}
+      </div>
+    </section>
+  </main>
+  {{> layout/sidebar }}
+</div>
 
 {{> layout/footer }}

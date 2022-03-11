@@ -1,0 +1,16 @@
+<aside>
+  {{#isLoggedIn}}
+    <div class="account-information">
+      <div class="avatar">
+        <img src="/uploads/{{user.avatar}}" alt="">
+      </div>
+      <div class="info">
+        <h1>{{user.name}}</h1>
+        <p>{{user.email}}</p>
+      </div>
+    </div>
+  {{/isLoggedIn}}
+  <footer>
+    © Matching-App 2022
+  </footer>
+</aside>

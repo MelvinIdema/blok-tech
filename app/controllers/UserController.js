@@ -2,7 +2,13 @@ import bcrypt from 'bcrypt';
 import User from '../models/User.js';
 
 async function login(req, res) {
-  if (req.method === 'GET') return res.render('login');
+  if (req.method === 'GET')
+    return res.render('login', {
+      alert: {
+        title: 'Demo account',
+        body: "You can try the application with 'demo@demo.nl' and password 'demo' or try to register your own account of course!",
+      },
+    });
 
   const user = { email: req.body.email, password: req.body.password };
   const dbUser = await User.getByEmail(user.email);
