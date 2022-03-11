@@ -66,21 +66,25 @@ h1 {
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
+header {
+  margin-bottom: 36px;
+}
+
 .container {
   box-sizing: border-box;
   max-width: 1200px;
-  margin: 36px auto;
+  margin: 24px auto;
   padding: 0 36px;
 }
 
 .layout-container {
   display: grid;
-  grid-template-columns: 8fr 2fr;
+  grid-template-columns: 6fr 3fr;
   grid-gap: 32px;
 }
 
 .layout-container.reversed {
-  grid-template-columns: 2fr 8fr;
+  grid-template-columns: 3fr 6fr;
 }
 
 .layout-container.reversed > aside {
@@ -135,16 +139,6 @@ aside .avatar img {
 aside footer {
   color: #cecece;
   text-align: left;
-}
-
-.dogs {
-  display: flex;
-}
-
-.dogs h2 {
-  padding: 12px;
-  margin: 0;
-  text-transform: capitalize;
 }
 
 .alert {
@@ -316,4 +310,28 @@ a {
 input.error {
   border: 1px solid rgba(255, 0, 0, 0.5);
   box-shadow: 0 3px 6px rgba(255, 0, 0, 0.16);
+}
+
+.dog {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  aspect-ratio: 1.91/1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 36px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.dog .info {
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+.dog .name {
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
 }
