@@ -30,7 +30,12 @@ UserRouter.get('/register', UserController.register);
 UserRouter.post('/register', upload.array('avatar'), UserController.register);
 
 UserRouter.get('/settings', authenticated, UserController.update);
-UserRouter.post('/settings', authenticated, UserController.update);
+UserRouter.post(
+  '/settings',
+  upload.array('avatar'),
+  authenticated,
+  UserController.update
+);
 
 UserRouter.get('/password-forget', UserController.forgetPassword);
 UserRouter.post('/password-forget', UserController.forgetPassword);

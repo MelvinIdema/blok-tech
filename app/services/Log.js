@@ -10,4 +10,5 @@ Sentry.init({
 
 export default function (error) {
   Sentry.captureException(error);
+  console.error(error);
 }

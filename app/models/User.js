@@ -86,13 +86,19 @@ async function create(user) {
   }
 }
 
-async function update(id, data) {
+async function update(email, data) {
   try {
     await client.connect();
     return await client
       .db('matching-app')
       .collection('users')
-      .updateOne({ _id: id }, data);
+      .updateOne(
+        { email: email },
+        {
+          $set: data,
+          $currentDate: { lastModified: true },
+        }
+      );
   } catch (err) {
     Log(err);
   } finally {

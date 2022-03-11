@@ -79,6 +79,14 @@ h1 {
   grid-gap: 32px;
 }
 
+.layout-container.reversed {
+  grid-template-columns: 2fr 8fr;
+}
+
+.layout-container.reversed > aside {
+  padding: 0 32px 32px 0;
+}
+
 .layout-container > main {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;

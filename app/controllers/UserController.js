@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import User from '../models/User.js';
+import Log from '../services/Log.js';
 
 async function login(req, res) {
   if (req.method === 'GET')
@@ -58,7 +59,18 @@ async function register(req, res) {
 }
 
 async function update(req, res) {
-  res.send('NOT IMPLEMENTED: Update');
+  if (req.method === 'GET') return res.render('settings');
+
+  try {
+    const user = await User.getByEmail(req.session.email);
+    await User.update(req.session.email, {
+      name: req.body.name,
+      avatar: req.files[0] ? req.files[0].filename : user.avatar,
+    });
+    res.redirect('/user/settings');
+  } catch (err) {
+    Log(err);
+  }
 }
 
 async function forgetPassword(req, res) {

@@ -1,0 +1,32 @@
+{{> layout/head }}
+<div class="layout-container reversed">
+  {{> layout/sidebar }}
+
+  <main>
+    <form action="settings" method="post" enctype="multipart/form-data">
+      <fieldset>
+        <legend>Account Information</legend>
+        <p class="file-upload">
+          <label for="avatar" style="background-image: url('/uploads/{{user.avatar}}')">
+            <input type="file" name="avatar" id="avatar" accept="image/gif, image/jpeg, image/png">
+          </label>
+        </p>
+        <p>
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" value="{{user.email}}" disabled>
+        </p>
+        <p>
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" value="{{user.name}}"required>
+        </p>
+        <p class="controls">
+          <button type="submit">Update</button>
+        </p>
+      </fieldset>
+    </form>
+  </main>
+</div>
+
+<script src="/js/register.js" defer></script>
+
+{{> layout/footer }}
