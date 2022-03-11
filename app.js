@@ -26,7 +26,7 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET,
     store: MongoStore.create({
-      mongoUrl: `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.vpj2j.mongodb.net/matching-app?retryWrites=true&w=majority`,
+      mongoUrl: process.env.MONGODB_URL,
     }),
     saveUninitialized: true,
     cookie: { maxAge: oneDay },

@@ -1,7 +1,7 @@
 import Log from '../services/Log.js';
 import { MongoClient } from 'mongodb';
 
-const uri = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@cluster0.vpj2j.mongodb.net/matching-app?retryWrites=true&w=majority`;
+const uri = process.env.MONGODB_URL;
 const client = new MongoClient(uri);
 
 const assign = (user) =>
