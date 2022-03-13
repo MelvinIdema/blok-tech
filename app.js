@@ -5,6 +5,7 @@ import mustacheExpress from 'mustache-express';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import cookieParser from 'cookie-parser';
+import compression from 'compression';
 
 import AppRouter from './routes/App.js';
 import UserRouter from './routes/User.js';
@@ -17,6 +18,8 @@ app.engine('mustache', mustacheExpress('views/partials/', '.mustache'));
 app.set('view engine', 'mustache');
 app.set('views', 'views');
 
+// noinspection JSCheckFunctionSignatures
+app.use(compression());
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

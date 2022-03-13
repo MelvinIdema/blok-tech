@@ -36,6 +36,7 @@
     "@sentry/tracing": "^6.18.2",
     "aws-sdk": "^2.1092.0",
     "bcrypt": "^5.0.1",
+    "compression": "^1.7.4",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "^1.4.6",
     "dog-names": "^2.0.0",
