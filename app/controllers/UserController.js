@@ -15,7 +15,11 @@ async function login(req, res) {
   const dbUser = await User.getByEmail(user.email);
 
   if (dbUser && bcrypt.compareSync(user.password, dbUser.password)) {
-    req.session.email = user.email;
+    req.session.user = {
+      name: dbUser.name,
+      email: dbUser.email,
+      avatar: dbUser.avatar,
+    };
     return res.redirect('/');
   }
 
@@ -54,7 +58,11 @@ async function register(req, res) {
 
   await User.create(user);
 
-  req.session.email = user.email;
+  req.session.user = {
+    name: user.name,
+    email: user.email,
+    avatar: user.avatar,
+  };
   res.redirect('/');
 }
 

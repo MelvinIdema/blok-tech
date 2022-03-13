@@ -1,10 +1,8 @@
-import User from '../models/User.js';
 import Log from '../services/Log.js';
 import fetch from 'node-fetch';
 import dogNames from 'dog-names';
 
 async function show(req, res) {
-  const user = await User.getByEmail(req.session.email);
   let dogs = [];
 
   try {
@@ -19,11 +17,6 @@ async function show(req, res) {
   }
 
   res.render('index', {
-    user: {
-      email: user.email,
-      name: user.name,
-      avatar: user.avatar,
-    },
     dogs: dogs,
   });
 }
