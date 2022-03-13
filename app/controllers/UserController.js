@@ -50,7 +50,7 @@ async function register(req, res) {
     created_at: Date.now(),
     email: req.body.email,
     name: req.body.name,
-    avatar: req.files[0] ? req.files[0].filename : 'jan-paparazzi-hyves.jpeg',
+    avatar: req.files[0] ? req.files[0].location : 'jan-paparazzi-hyves.jpeg',
   });
 
   const salt = await bcrypt.genSalt(10);
@@ -68,13 +68,16 @@ async function register(req, res) {
 
 async function update(req, res) {
   if (req.method === 'GET') return res.render('settings');
-
   try {
-    const user = await User.getByEmail(req.session.email);
-    await User.update(req.session.email, {
+    const user = await User.getByEmail(req.session.user.email);
+    await User.update(req.session.user.email, {
       name: req.body.name,
-      avatar: req.files[0] ? req.files[0].filename : user.avatar,
+      avatar: req.files[0] ? req.files[0].location : user.avatar,
     });
+    req.session.user.name = req.body.name;
+    req.session.user.avatar = req.files[0]
+      ? req.files[0].location
+      : user.avatar;
     res.redirect('/user/settings');
   } catch (err) {
     Log(err);

@@ -1,23 +1,8 @@
-import crypto from 'crypto';
-import path from 'path';
 import express from 'express';
-import multer from 'multer';
+import upload from '../app/services/S3.js';
 
 import UserController from '../app/controllers/UserController.js';
 import authenticated from '../app/middlewares/authenticated.js';
-
-// https://github.com/expressjs/multer/issues/170#issuecomment-123402678
-const storage = multer.diskStorage({
-  destination: './public/uploads/',
-  filename: function (req, file, cb) {
-    crypto.randomBytes(16, function (err, raw) {
-      if (err) return cb(err);
-
-      cb(null, raw.toString('hex') + path.extname(file.originalname));
-    });
-  },
-});
-const upload = multer({ storage: storage });
 
 const UserRouter = express.Router();
 
