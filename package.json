@@ -10,7 +10,7 @@
   "scripts": {
     "serve": "nodemon app.js",
     "start": "node app.js",
-    "build": "webpack",
+    "build": "webpack --mode production",
     "prepare": "husky install"
   },
   "keywords": [
