@@ -9,6 +9,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: "module"
   },
+  ignorePatterns: ['bundle.js'],
   rules: {
     semi: ['error', 'always'],
   },
